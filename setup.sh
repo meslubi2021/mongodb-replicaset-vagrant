@@ -11,10 +11,10 @@ readonly MONGODB_ROOT_PASSWORD="db@p@ss@root"
 
 # Install mongodb 3.4
 # Do not start mongod process with the default configuration
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+apt-get update
+apt-get install -y mongodb-org
 
 
 # Directory containing all the configuration/data files of mongodb nodes
@@ -27,7 +27,7 @@ do
 done
 
 # Populating Configuration Files for mongodb nodes
-# TODO: bindIp should be open only tothe servers which needs access to it.
+# TODO: bindIp should be open only to the servers which needs access to it.
 # A comma seperated list of ip's should be mentioned like 172.31.31.12, 172.31.31.13 etc.
 ITER=0
 for i in "${MONGODB_NODES[@]}"
@@ -106,10 +106,10 @@ done
 
 # Initiate the replica set and add secondaries
 # TODO: Find a way to use ipaddress while adding secondary node and not use not embedd client hostname
-mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.initiate()'
-mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("ubuntu-xenial:27018")'
-mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("ubuntu-xenial:27019")'
-# mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); cfg = rs.conf(); cfg.members[0].priority = 10; cfg.members[1].priority = 1; cfg.members[2].priority = 1; rs.reconfig(cfg)'
+mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.initiate({"_id":"rs1","members":[{"_id":1,"host":"127.0.0.1:27017"}]})'
+mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("127.0.0.1:27018")'
+mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("127.0.0.1:27019")'
+mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); cfg = rs.conf(); cfg.members[0].priority = 10; cfg.members[1].priority = 1; cfg.members[2].priority = 1; rs.reconfig(cfg)'
 
 
 
