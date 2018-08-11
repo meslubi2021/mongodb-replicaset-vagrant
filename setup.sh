@@ -111,6 +111,3 @@ mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_R
 mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("127.0.0.1:27019")'
 mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); cfg = rs.conf(); cfg.members[0].priority = 10; cfg.members[1].priority = 1; cfg.members[2].priority = 1; rs.reconfig(cfg)'
 
-
-
-
