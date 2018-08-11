@@ -29,7 +29,7 @@ done
 # Populating Configuration Files for mongodb nodes
 # TODO: bindIp should be open only to the servers which needs access to it.
 # A comma seperated list of ip's should be mentioned like 172.31.31.12, 172.31.31.13 etc.
-ITER=0
+ITER=1
 for i in "${MONGODB_NODES[@]}"
 do
 echo "$INSTALL_DIR/MongoDB/$i.conf"
