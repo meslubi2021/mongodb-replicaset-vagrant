@@ -2,12 +2,12 @@
 # This script setups a replica set of mongodb 3.4 version running in PSS mode (Primary, Secondary, Secondary) on a local machine.
 # It assumes that the installation directory with variable INSTALL_DIR exists
 # Inititalizing variables
-readonly INSTALL_DIR="/home/vagrant"
-readonly MONGODB_CONF_FILES=("mongodbPrimary.conf" "mongodbSecondary1.conf" "mongodbSecondary2.conf")
-readonly MONGODB_NODES=("mongodbPrimary" "mongodbSecondary1" "mongodbSecondary2")
-readonly MONGODB_PORTS=(27017 27018 27019)
-readonly MONGODB_ROOT_USER="db_root"
-readonly MONGODB_ROOT_PASSWORD="db@p@ss@root"
+INSTALL_DIR="/home/vagrant"
+MONGODB_CONF_FILES=("mongodbPrimary.conf" "mongodbSecondary1.conf" "mongodbSecondary2.conf")
+MONGODB_NODES=("mongodbPrimary" "mongodbSecondary1" "mongodbSecondary2")
+MONGODB_PORTS=(27017 27018 27019)
+MONGODB_ROOT_USER="db_root"
+MONGODB_ROOT_PASSWORD="db@p@ss@root"
 
 # Install mongodb 3.4
 # Do not start mongod process with the default configuration
