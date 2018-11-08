@@ -13,6 +13,7 @@ Secondary Node 1 - 27018
 
 Secondary Node 2- 27019
 
+Know More About [Configuring mongodb-replicaset](https://medium.com/docon/configuring-mongodb-3-4-replica-set-on-ubuntu-16-04-d4c91f9e9f8).
 
 ## Prerequisite
 1. Vagrant setup needs to be configured on the local machine. Know more about how to setup [vagrant](https://www.vagrantup.com/intro/getting-started/install.html).

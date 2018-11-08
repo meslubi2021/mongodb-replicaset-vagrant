@@ -27,7 +27,6 @@ do
 done
 
 # Populating Configuration Files for mongodb nodes
-# TODO: bindIp should be open only to the servers which needs access to it.
 # A comma seperated list of ip's should be mentioned like 172.31.31.12, 172.31.31.13 etc.
 ITER=1
 for i in "${MONGODB_NODES[@]}"
@@ -105,7 +104,6 @@ done
 
 
 # Initiate the replica set and add secondaries
-# TODO: Find a way to use ipaddress while adding secondary node and not use not embedd client hostname
 mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.initiate({"_id":"rs1","members":[{"_id":1,"host":"127.0.0.1:27017"}]})'
 mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("127.0.0.1:27018")'
 mongo --port 27017 admin --eval 'db.auth("'"$MONGODB_ROOT_USER"'", "'"$MONGODB_ROOT_PASSWORD"'"); rs.add("127.0.0.1:27019")'
