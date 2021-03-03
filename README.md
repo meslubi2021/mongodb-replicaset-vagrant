@@ -21,3 +21,11 @@ Know More About [Configuring mongodb-replicaset](https://medium.com/docon/config
 ## Usage
 1. Clone the repository on your local machine
 2. Run `vagrant up` to start the vagrant machine.
+
+## SSH
+
+```
+# Get key file
+vagrant ssh-config | grep IdentityFile
+ssh vagrant@localhost -p 2222 -i <identityfile-localtion>
+```
