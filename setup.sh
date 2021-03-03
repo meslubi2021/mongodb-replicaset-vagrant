@@ -28,7 +28,7 @@ done
 
 # Populating Configuration Files for mongodb nodes
 # A comma seperated list of ip's should be mentioned like 172.31.31.12, 172.31.31.13 etc.
-ITER=1
+ITER=0
 for i in "${MONGODB_NODES[@]}"
 do
 echo "$INSTALL_DIR/MongoDB/$i.conf"
